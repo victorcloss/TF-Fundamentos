@@ -5,7 +5,7 @@ public class Livro {
     private int numExemplares;
     private int codigoLivro;
     
-    public void Livro (String nomeDoLivro,int numExemplares ){
+    public Livro(String nomeDoLivro,int numExemplares ){
         this.nome = nomeDoLivro;
         this.numExemplares = numExemplares;
         this.codigoLivro = Livro.SEQUENCIAL ++;
@@ -23,7 +23,7 @@ public class Livro {
         livro.numExemplares+=1 ;
         System.out.println("O livro foi devolvido com sucesso!");
     }
-
+    
     public void setNumExemplares(int numExemplares) {
         this.numExemplares = numExemplares;
     }

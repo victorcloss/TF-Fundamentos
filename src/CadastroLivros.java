@@ -1,19 +1,23 @@
 public class CadastroLivros{
-    public CadastroLivros(Livro [] livrosCadastrados){
-        livrosCadastrados  = new Livro[10];
+    private Livro [] livrosCadastrados;
+    private int maxLivros;
+    
+    public CadastroLivros(){
+        maxLivros = 10;
+        livrosCadastrados = new Livro[maxLivros];
     }
-    public static boolean adicionaLivro(Livro [] livros, String nomeLivro, int numExemplares){
+    public boolean adicionaLivro(String nomeLivro, int numExemplares){
         boolean conseguiu = false;
-        for(int i = 0; i < livros.length;i++){
-            if(livros[i] == null){
-                livros[i] = new Livro(nomeLivro, numExemplares);
+        for(int i = 0; i < this.livrosCadastrados.length;i++){
+            if(this.livrosCadastrados[i] == null){
+                this.livrosCadastrados[i] = new Livro(nomeLivro, numExemplares);
                 conseguiu = true;
                 break;
             }
         }  
         return conseguiu;
     }
-    public static boolean removeLivro(Livro[]livros, String nomeLivro){
+    public boolean removeLivro(Livro[]livros, String nomeLivro){
         boolean conseguiu = false;
         for(int i = 0; i < livros.length;i++){
             if(livros[i].getNome() == nomeLivro){
@@ -24,32 +28,37 @@ public class CadastroLivros{
         } 
         return conseguiu; 
     }
-    public static void buscaLivroPeloNome(Livro []livros, String nomeLivro){
-        for(int i = 0; i < livros.length;i++){
-            if(livros[i].getNome() == nomeLivro){
-                System.out.println("Nome: " + livros[i].getNome());
-                System.out.println("Codigo: " + livros[i].getCodigoLivro());
-                System.out.println("Numero de Exemplares: " + livros[i].getNumExemplares());
-                break;
+    public Livro buscaLivroPeloNome(String nome) {
+        for (Livro livro : livrosCadastrados) {
+            if (livro.getNome().equalsIgnoreCase(nome)) {
+                return livro;
             }
-        } 
+        }
+        return null;
     }
-    public static int totalExemplares(Livro[]livros){
+
+    public int totalExemplares(){
         int totalExmp = 0;
-        for(int i = 0; i < livros.length;i++){
-            if(livros[i] != null){
-                totalExmp += livros[i].getNumExemplares();
+        for(int i = 0; i < livrosCadastrados.length;i++){
+            if(livrosCadastrados[i] != null){
+                totalExmp += livrosCadastrados[i].getNumExemplares();
             }
         }
         return totalExmp;
     }
-    public static void mostraLivros(Livro[]livros){
-        for(int i = 0; i < livros.length;i++){
+    public void mostraLivros(){
+        for(int i = 0; i < livrosCadastrados.length;i++){
             System.out.println("Livro - "+(i+1)+" :");
-            System.out.println("Nome: " + livros[i].getNome());
-            System.out.println("Codigo: " + livros[i].getCodigoLivro());
-            System.out.println("Numero de Exemplares: " + livros[i].getNumExemplares());
+            System.out.println("Nome: " + livrosCadastrados[i].getNome());
+            System.out.println("Codigo: " + livrosCadastrados[i].getCodigoLivro());
+            System.out.println("Numero de Exemplares: " + livrosCadastrados[i].getNumExemplares());
             System.out.println("--------------------------------------------------------");
         }
+    }
+    public void mostrarInfos(Livro livro){
+        System.out.println("Nome: " + livro.getNome());
+        System.out.println("Codigo: " + livro.getCodigoLivro());
+        System.out.println("Numero de Exemplares: " + livro.getNumExemplares());
+        System.out.println("--------------------------------------------------------");
     }
 }

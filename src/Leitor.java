@@ -1,14 +1,23 @@
 public class Leitor {
-    private static int SEQUENCIAL = -1;
+    private static int SEQUENCIAL = 0001;
     private int matricula;
     private String nome;
     private String cidadeOrigem;
-    private Livro livro;
+    private int livrosAlugados = 0;
+
+    public int getLivrosAlugados() {
+        return livrosAlugados;
+    }
+
+    public void setLivrosAlugados(int livrosAlugados) {
+        this.livrosAlugados = livrosAlugados;
+    }
 
     public Leitor(String nome, String cidadeOrigem){
-        this.matricula = Leitor.SEQUENCIAL++;
+        this.matricula = Leitor.SEQUENCIAL;
         this.nome = nome;
         this.cidadeOrigem = cidadeOrigem;
+        SEQUENCIAL++;
     }
     
     public int getMatricula() {
@@ -22,14 +31,7 @@ public class Leitor {
     public String getCidadeOrigem() {
         return cidadeOrigem;
     }
-    
-    public Livro getLivro() {
-        return livro;
-    }
 
-    public void setLivro(Livro livro) {
-        this.livro = livro;
-    }    
 
     public void setNome(String nome) {
         this.nome = nome;

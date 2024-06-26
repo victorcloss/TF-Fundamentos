@@ -21,7 +21,7 @@ public class Livraria {
             System.out.println("[8] - Devolver livro ");
             System.out.println("[9] - Quantidade total de exemplares disponíveis no sistema de empréstimo");
             System.out.println("[10] - Sair do programa");
-            System.out.print("Digite o número conforme a opção desejada: ");
+            System.out.print("Digite o número conforme a opcao desejada: ");
         
             escolha = input.nextInt();
             input.nextLine();
@@ -83,25 +83,38 @@ public class Livraria {
                     Leitor leitorEncontrado = cl.buscaLeitorPeloNome(nomeLeitor);
                     if (leitorEncontrado==null) {
                         System.out.println("O leitor ainda nao esta cadastrado no nosso sistema!");
-                    } else if(leitorEncontrado != null && leitorEncontrado.getLivrosAlugados()<1) {
+                    } else if(leitorEncontrado != null && leitorEncontrado.getLivroRetirado()==null) {
                         System.out.println("O leitor nao possui nenhum livro pendente");
                         System.out.print("Qual livro que "+nomeLeitor+" deseja fazer a retirada? ");
                         String livroAlugado = input.nextLine();
                         Livro livroAlugar = cb.buscaLivroPeloNome(livroAlugado);
-                        if(livroAlugar.retirar(livroAlugar)){
+                        if(livroAlugar.retirar(livroAlugar,leitorEncontrado)){
                             System.out.println("A retirada de "+ livroAlugar.getNome()+ " foi realizada com sucesso!");
-                            leitorEncontrado.setLivrosAlugados(1);
                         } else {System.out.println("Infelizmente o livro "+livroAlugar.getNome()+" nao possui exemplares disponiveis");}
                     }else System.out.println("O leitor precisa devolver os livros pendentes antes de retirar outro!");
 
                     break;
                 }
                 case 8:{
+                    System.out.println("Digite o nome do leitor que deseja devolver o livro: ");
+                    String nomeLeitor = input.nextLine();
+                    Leitor leitorEncontrado = cl.buscaLeitorPeloNome(nomeLeitor);
+                    if (leitorEncontrado==null) {
+                        System.out.println("O leitor ainda nao esta cadastrado no nosso sistema!");
+                    }else if (leitorEncontrado != null){
+                        if(leitorEncontrado.getLivroRetirado() == null){
+                            System.out.println(leitorEncontrado.getNome()+" nao possui nenhum livro pendente!");
+                        }else{System.out.print("Digite o nome do livro que quer devolver: ");
+                            String nomeLivro = input.nextLine();
+                            Livro livroDevolver = cb.buscaLivroPeloNome(nomeLivro);
+                            livroDevolver.devolver(livroDevolver,leitorEncontrado);
+                        }
 
+                    }
                     break;
                 }
                 case 9:{
-
+                    System.out.println("O total de exemplares no sistema de emprestimo eh de: "+cb.totalExemplares());
                     break;
                 }
                 default: { System.out.println("O Programa foi encerrado!");}

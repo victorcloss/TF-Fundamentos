@@ -3,6 +3,7 @@ public class Livro {
     private String nome;
     private int numExemplares;
     private int codigoLivro;
+
     
     public Livro(String nomeDoLivro,int numExemplares ){
         this.nome = nomeDoLivro;
@@ -11,17 +12,19 @@ public class Livro {
         SEQUENCIAL++;
     }
     
-    public boolean retirar(Livro livro){
+    public boolean retirar(Livro livro, Leitor leitor){
         boolean conseguiu = false;
         if(livro.getNumExemplares()>=1){
             livro.numExemplares-=1;
+            leitor.setLivroRetirado(livro);
             conseguiu = true;
            }
            return conseguiu;
     }
 
-    public void devolver(Livro livro){
+    public void devolver(Livro livro, Leitor leitor){
         livro.numExemplares+=1 ;
+        leitor.setLivroRetirado(null);
         System.out.println("O livro foi devolvido com sucesso!");
     }
     

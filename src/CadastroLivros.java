@@ -48,11 +48,12 @@ public class CadastroLivros{
     }
     public void mostraLivros(){
         for(int i = 0; i < livrosCadastrados.length;i++){
+            if(livrosCadastrados[i]!=null){
             System.out.println("Livro - "+(i+1)+" :");
             System.out.println("Nome: " + livrosCadastrados[i].getNome());
             System.out.println("Codigo: " + livrosCadastrados[i].getCodigoLivro());
             System.out.println("Numero de Exemplares: " + livrosCadastrados[i].getNumExemplares());
-            System.out.println("--------------------------------------------------------");
+            System.out.println("--------------------------------------------------------");}
         }
     }
     public void mostrarInfos(Livro livro){

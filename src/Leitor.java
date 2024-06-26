@@ -4,6 +4,15 @@ public class Leitor {
     private String nome;
     private String cidadeOrigem;
     private int livrosAlugados = 0;
+    private Livro livroRetirado;
+
+    public Livro getLivroRetirado() {
+        return livroRetirado;
+    }
+
+    public void setLivroRetirado(Livro livroRetirado) {
+        this.livroRetirado = livroRetirado;
+    }
 
     public int getLivrosAlugados() {
         return livrosAlugados;

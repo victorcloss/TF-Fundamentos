@@ -6,6 +6,14 @@ public class Livraria {
         CadastroLeitor cl = new CadastroLeitor();
         CadastroLivros cb = new CadastroLivros();
 
+        cl.adicionaLeitor("Victor","Porto Alegre");
+        cl.adicionaLeitor("Gabriel", "Porto Alegre");
+        cl.adicionaLeitor("Lucia", "Porto Alegre");
+
+        cb.adicionaLivro("Harry Potter", 2);
+        cb.adicionaLivro("Percy Jackson", 1);
+        cb.adicionaLivro("O Segredo", 3);
+
         System.out.println("\f");
         Scanner input = new Scanner(System.in);
         int escolha;                                                                                                               
@@ -22,7 +30,7 @@ public class Livraria {
             System.out.println("[9] - Quantidade total de exemplares disponíveis no sistema de empréstimo");
             System.out.println("[10] - Sair do programa");
             System.out.print("Digite o número conforme a opcao desejada: ");
-        
+            
             escolha = input.nextInt();
             input.nextLine();
             switch (escolha){
